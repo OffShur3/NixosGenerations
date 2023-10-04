@@ -12,34 +12,43 @@
     ./hardware-configuration.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  #bootanimation logo
-  boot.plymouth.enable = true;
-  boot.plymouth.theme = "bgrt";
-  boot.initrd.verbose = false;
-  boot.consoleLogLevel = 0;
-  boot.kernelParams = ["quiet" "udev.log_level=0"];
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+
+    #bootanimation logo
+    plymouth.enable = true;
+    plymouth.theme = "bgrt";
+    initrd.verbose = false;
+    consoleLogLevel = 0;
+    kernelParams = ["quiet" "udev.log_level=0"];
+  };
 
   #--------------------------
   #    Seccion Network
   #--------------------------
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "KatyUwU"; # Define your hostname.
+    #wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    # Configure network proxy if necessary
+    #proxy.default = "http://user:password@proxy:port/";
+    #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    
+    # Enable networking
+    networkmanager.enable = true;
+    
+    # Open ports in the firewall.
+    #firewall.allowedTCPPorts = [ ... ];
+    #firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    #firewall.enable = false;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Argentina/Buenos_Aires";
-
-  # Select internationalisation properties.
+  
+  # Select internationalisation roperties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -58,27 +67,37 @@
   #    Seccion Services
   #--------------------------
 
-  #services = {
-  # Otras configuraciones de servicios aquí
+  services = {
+    xserver = {
+      # Enable the X11 windowing system.
+      enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+      # Enable the GNOME Desktop Environment.
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+      # Configure keymap in X11
+      layout = "latam";
+      xkbVariant = "";
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "latam";
-    xkbVariant = "";
+      # Enable touchpad support (enabled default in most desktopManager).
+      #libinput.enable = true;
+    };
+    # Enable CUPS to print documents.
+    printing.enable = true;
+    avahi.enable = true;
+    avahi.nssmdns = true;
+    # for a WiFi printer
+    avahi.openFirewall = true;
+
+    # docker
+    #docker.enable = true;
+
+    #Other services...
   };
 
   # Configure console keymap
   console.keyMap = "la-latin1";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -97,11 +116,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # docker
-  #services.docker.enable = true;
   virtualisation.docker.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -164,6 +178,7 @@
     apple-cursor
     obsidian
     vscode
+    #jupyter
 
     # Trabajo
     mailspring
@@ -198,16 +213,13 @@
   #  "steam-run"
   #];
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
   nix.settings.experimental-features = ["nix-command" "flakes" ]; # "search" "nixpkgs"]; #doesn't work
 
