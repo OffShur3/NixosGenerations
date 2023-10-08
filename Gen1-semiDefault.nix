@@ -206,6 +206,14 @@
     };
   };
 
+
+  nix = {
+    gc.automatic = true; # delete garbage collection daily
+    settings = {
+      auto-optimise-store = true; # optimiza la store para ahorrar espacio
+      experimental-features = ["nix-command" "flakes" ]; # "search" "nixpkgs"]; #doesn't work
+    };
+  };
   # Configuración para permitir paquetes no libres relacionados con Steam
   #nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   #  "steam"
@@ -220,8 +228,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  nix.settings.experimental-features = ["nix-command" "flakes" ]; # "search" "nixpkgs"]; #doesn't work
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
