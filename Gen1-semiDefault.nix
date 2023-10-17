@@ -96,6 +96,18 @@
     #Other services...
   };
 
+
+
+
+  systemd.services.encendido = {
+    enable = true;
+    description = "Ejecutar curl al inicio del sistema";
+    after = [ "network.target" ]; # Esperar a que la red esté disponible
+    serviceConfig.ExecStart = "/run/current-system/sw/bin/curl -H tags:fire -H prio:high --silent -d 'Encendiendo la PC' ntfy.sh/laconchadetumadrebobesponjaptm > /dev/null";
+    wantedBy = [ "multi-user.target" ];
+  };
+
+
   # Configure console keymap
   console.keyMap = "la-latin1";
 
@@ -117,7 +129,7 @@
   };
 
   virtualisation.docker.enable = true;
-
+ 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.shur3 = {
     isNormalUser = true;
@@ -136,10 +148,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #vim  Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #vim, docker, poetry #installing python dependences
     #basics / non-graphical
-    #docker
-    #poetry #installing python dependences
 
     #gnome extensions
     gnomeExtensions.unite
@@ -156,21 +166,26 @@
     gnomeExtensions.burn-my-windows
     gnome.gnome-tweaks
 
-    #Others
+    #Beauty customization
     fzf
-    rclone
-    wget
-    git
+    lsd #beauty shell :)
+    bat
     cava
     neofetch
     tty-clock
+    gradience #colors of windows
+
+    #Others
+    wget
+    git
+    rclone
     xclip
     neovim
+    gnumake
 
     #some dependences
     appimagekit
     python3
-    #python310Packages.pyautogui # works on nix.shell idk why
 
     # Apps graphical
     kitty
@@ -178,13 +193,18 @@
     apple-cursor
     obsidian
     vscode
+    stremio
     #jupyter
 
     # Trabajo
-    mailspring
-    libreoffice
-    microsoft-edge
+    # mailspring
+    # libreoffice
+    # microsoft-edge
   ];
+
+  # nixpkgs.config.permittedInsecurePackages = [
+    # "mailspring-1.11.0"
+  # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
