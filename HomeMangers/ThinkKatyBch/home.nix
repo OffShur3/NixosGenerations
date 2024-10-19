@@ -14,6 +14,7 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
+  nixpkgs.config.allowUnfree = true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -26,6 +27,7 @@
 
     #Apps
     pkgs.steam
+    pkgs.protonup-qt
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -70,6 +72,7 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
