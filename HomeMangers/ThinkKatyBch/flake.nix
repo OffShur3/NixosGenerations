@@ -1,5 +1,4 @@
 {
-:%s/shur3/ThinkKatyBch                                        
   description = "Home Manager configuration of ThinkKatyBch";
 
   inputs = {

@@ -21,6 +21,7 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
+    pkgs.cowsay
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -64,6 +65,23 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+  };
+  home.environment.variables = {
+    LANG = "es_ES.UTF-8";
+    LANGUAGE = "es_ES:es";
+    LC_ALL = "es_ES.UTF-8";
+    LC_CTYPE = "es_ES.UTF-8";
+    LC_NUMERIC = "es_ES.UTF-8";
+    LC_COLLATE = "es_ES.UTF-8";
+    LC_TIME = "es_ES.UTF-8";
+    LC_MESSAGES = "es_ES.UTF-8";
+    LC_MONETARY = "es_ES.UTF-8";
+    LC_ADDRESS = "es_ES.UTF-8";
+    LC_IDENTIFICATION = "es_ES.UTF-8";
+    LC_MEASUREMENT = "es_ES.UTF-8";
+    LC_PAPER = "es_ES.UTF-8";
+    LC_TELEPHONE = "es_ES.UTF-8";
+    LC_NAME = "es_ES.UTF-8";
   };
 
   # Let Home Manager install and manage itself.
