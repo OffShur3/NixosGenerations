@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, zen-browser, pkgs, ... }:
 
 
 {
@@ -45,7 +45,7 @@
     #Apps
     pkgs.steam
     pkgs.protonup-qt
-    
+    zen-browser
 
     # Office
     pkgs.obsidian
