@@ -46,7 +46,6 @@
     #Games
     pkgs.steam
     pkgs.protonup-qt
-    pkgs.prismlauncher-unwrapped
 
     #Apps
     zen-browser
