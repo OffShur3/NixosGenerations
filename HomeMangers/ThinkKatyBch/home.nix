@@ -34,7 +34,7 @@
     pkgs.syncthing
     pkgs.docker-compose
     pkgs.docker
-    ipkgs.distrobox
+    pkgs.distrobox
     pkgs.python3
     pkgs.rustc
     pkgs.rustup
