@@ -16,16 +16,15 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    prismlauncher.url = "github:PrismLauncher/PrismLauncher";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
-  outputs = { nixpkgs, home-manager, zen-browser, prismlauncher, ... }:
+  outputs = { nixpkgs, home-manager, zen-browser, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       zenBrowserPkg = zen-browser.packages.${system}.default;  # Puedes cambiar 'default' a 'specific' o 'generic'
-      PrismLauncherPkg = prismlauncher.packages.${system}.default;  # Puedes cambiar 'default' a 'specific' o 'generic'
+
     in {
       homeConfigurations."ThinkKatyBch" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -34,7 +33,6 @@
 
         extraSpecialArgs = {
           zen-browser = zenBrowserPkg;
-          prismlauncher = PrismLauncherPkg;
         };
       };
     };
