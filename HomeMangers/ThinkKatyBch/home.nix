@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 
+
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -24,10 +25,33 @@
     # pkgs.hello
     ##  some things
     pkgs.fzf
+    pkgs.evillimiter
+    pkgs.fd
+    pkgs.xclip
+    pkgs.git
+    pkgs.rclone
+    pkgs.neovim
+    pkgs.syncthing
+    pkgs.docker-compose
+    pkgs.docker
+    pkgs.python3
+    pkgs.rustc
+    pkgs.rustup
+    # pkgs.cargo
+    pkgs.mdbook
+    pkgs.jq
+    pkgs.keepassxc
 
     #Apps
     pkgs.steam
     pkgs.protonup-qt
+    
+
+    # Office
+    pkgs.obsidian
+    pkgs.discord
+    pkgs.libreoffice
+
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
