@@ -1,4 +1,4 @@
-{ config, zen-browser, pkgs, ... }:
+{ config, zen-browser, prismlauncher, pkgs, ... }:
 
 
 {
@@ -34,6 +34,7 @@
     pkgs.syncthing
     pkgs.docker-compose
     pkgs.docker
+    ipkgs.distrobox
     pkgs.python3
     pkgs.rustc
     pkgs.rustup
@@ -42,9 +43,12 @@
     pkgs.jq
     pkgs.keepassxc
 
-    #Apps
+    #Games
     pkgs.steam
     pkgs.protonup-qt
+    prismlauncher
+
+    #Apps
     zen-browser
 
     # Office
@@ -65,17 +69,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-  ];
-
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-    noto-fonts
-    noto-fonts-emoji
-    twemoji-color-font
-    font-awesome
-    powerline-fonts
-    powerline-symbols
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
