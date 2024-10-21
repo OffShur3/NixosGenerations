@@ -1,7 +1,5 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-#
+# BSPWM NIX Config
+
 {
   config,
   pkgs,
@@ -87,9 +85,10 @@
 
       # Enable the GNOME Desktop Environment.
       displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true; # Cambiado a Gnome
-      # windowManager.bspwm.enable = true;
+      windowManager.bspwm.enable = true;
+      desktopManager.gnome.enable = false; # Cambiado a Gnome
       # desktopManager.plasma5.enable = false; # Cambiado a Kde4
+
 
       # Configure keymap in X11
       layout = "latam";
@@ -99,8 +98,9 @@
       # Enable touchpad support (enabled default in most desktopManager).
       #libinput.enable = true;
     };
-    
-    picom.enable=true;
+
+    picom.enable = true; #picom compositor for bspwm
+
     # programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.gnome.seahorse.out}/libexec/seahorse/ssh-askpass";
 
     # Enable CUPS to print documents.
@@ -136,11 +136,6 @@
     #media-session.enable = true;
   };
 
-  # programs.hyprland = {
-  #   # Install the packages from nixpkgs
-  #   enable = true;
-  #   # Whether to enable XWayland
-  #   xwayland.enable = true;
   #
   #   # Optional
   #   # Whether to enable patching wlroots for better Nvidia support
@@ -161,13 +156,20 @@
     ];
   };
 
-  # Allow unfree packages
-  #nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  #environment.systemPackages = with pkgs; [
-  #];
+  environment.systemPackages = with pkgs; [
+    #bspwm
+    sxhkd
+    picom
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "mailspring-1.11.0"
+    "electron-25.9.0"
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -180,39 +182,6 @@
   #--------------------------
   #    Seccion Programs
   #--------------------------
-
-  # systemd.services = {
-  #   backupScript = {
-  #     description = "Backup Script";
-  #     wantedBy = [ "timers.target" ];
-  #     serviceConfig = {
-  #       ExecStart = "/etc/nixos/backup-folders.sh";
-  #     };
-  #   };
-  #
-  #   curlOnBoot = {
-  #     description = "Run curl command on boot";
-  #     serviceConfig = {
-  #       Type = "oneshot";
-  #       ExecStart = "/run/current-system/sw/bin/curl --silent -H 'Title: Encendiendo PC' -H 'Priority: High' -H 'Tags: warning' -d 'Se está encendiendo la PC ...' ntfy.sh/laconchadetumadrebobesponjaptm";
-  #     };
-  #   };
-  # };
-  #
-  # systemd.timers = {
-  #   backupScript = {
-  #     description = "Timer for Backup Script";
-  #     wantedBy = ["timers.target"];
-  #   };
-  #
-  #   curlOnBoot = {
-  #     description = "Run curl command on boot timer";
-  #     timerConfig = {
-  #       OnBootSec = "5min";
-  #       Persistent = true;
-  #     };
-  #   };
-  # };
 
   programs = {
     steam = {

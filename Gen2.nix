@@ -1,16 +1,12 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-#
+
 {
   config,
   pkgs,
   ...
-}:{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./modularNixFiles/Basic_Apps.nix
   ];
 
   boot = {
@@ -68,18 +64,6 @@
   #    Seccion Services
   #--------------------------
 
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-
-  # services.xrdp.enable = true;
-  # services.xrdp.defaultWindowManager = "gnome-session";
-  # services.xrdp.openFirewall = true;
-  
-  services.gnome.gnome-remote-desktop.enable=true;
-  services.openssh.enable=true;
-  services.openssh.banner="Bienvenido a la super-maquina NixOs\n  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣠⣤⣤⣄⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠤⠖⠊⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠲⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   \n⠀⠀⠀⠀⠀⠀⠀⡤⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⠀⡜⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢢⠀⠀⠀⠀⠀⢳⠀⠀⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⣸⠁⠀⠀⠀⠀⠀⠀⠀⠱⡀⠀⠀⠀⠀⠀⠀⠀⡀⠈⠀⡀⠀⠀⠀⠈⡇⠀⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⡏⠀⠀⠀⠀⠀⠀⠀⠀⡰⠁⠀⠀⠀⠀⠀⠀⠀⠘⡆⡜⠁⠀⠀⠀⠀⢧⡀⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠸⡀⠀⠀⠀⠀⠀⣀⣤⡂⠀⠇⠱⠀⡀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⢇⠀⠀⠀⠀⠀⠀⠀⠀⠈⢄⡀⢠⣟⢭⣥⣤⠽⡆⠀⡶⣊⣉⣲⣤⢀⡞⠀⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⠘⣆⠀⠀⠀⠀⠀⠀⡀⠀⠐⠂⠘⠄⣈⣙⡡⡴⠀⠀⠙⣄⠙⣛⠜⠘⣆⠀⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⠀⠈⢦⡀⠀⠀⠀⢸⠁⠀⠀⠀⠀⠀⠀⠄⠊⠀⠀⠀⠀⡸⠛⠀⠀⠀⢸⠆⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⠦⢄⣘⣄⠀⠀⠀⠀⠀⠀⠀⡠⠀⠀⠀⠀⣇⡀⠀⠀⣠⠎⠀⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠁⠈⡟⠒⠲⣄⠀⠀⡰⠇⠖⢄⠀⠀⡹⡇⢀⠎⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡇⠀⠀⡇⠀⠀⠹⠀⡞⠀⠀⢀⠤⣍⠭⡀⢱⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  \n⠀⠀⠀⠀⠀⠀⢀⣀⣀⣠⠞⠀⠀⢠⡇⠀⠀⠀⠀⠁⠀⢴⠥⠤⠦⠦⡼⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  \n⣀⣤⣴⣶⣿⣿⡟⠁⠀⠋⠀⠀⠀⢸⠁⠀⠀⠀⠀⠀⠀⠀⠑⣠⢤⠐⠁⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  \n⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⢸⡀⠀⠀⠀⠀⠀⠀⠀⠀⠬⠥⣄⠀⠀⠈⠲⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀  \n⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠙⠦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠈⢳⠀⠀⢀⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀  \n⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠒⠦⠤⢤⣄⣀⣠⠤⢿⣶⣶⣿⣿⣿⣶⣤⡀⠀⠀⠀⠀⠀  \n⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⠁⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣄\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣤⣤⣀⣀⣀⣀⣀⣀⣀⣤⣤⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-\n\n";
-
   services = {
     xserver = {
       # Enable the X11 windowing system.
@@ -87,22 +71,15 @@
 
       # Enable the GNOME Desktop Environment.
       displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true; # Cambiado a Gnome
-      # windowManager.bspwm.enable = true;
-      # desktopManager.plasma5.enable = false; # Cambiado a Kde4
+      #desktopManager.gnome.enable = true;
 
       # Configure keymap in X11
       layout = "latam";
       xkbVariant = "";
-      
 
       # Enable touchpad support (enabled default in most desktopManager).
       #libinput.enable = true;
     };
-    
-    picom.enable=true;
-    # programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.gnome.seahorse.out}/libexec/seahorse/ssh-askpass";
-
     # Enable CUPS to print documents.
     printing.enable = true;
     avahi.enable = true;
@@ -115,6 +92,18 @@
 
     #Other services...
   };
+
+
+
+
+  systemd.services.encendido = {
+    enable = true;
+    description = "Ejecutar curl al inicio del sistema";
+    after = [ "network.target" ]; # Esperar a que la red esté disponible
+    serviceConfig.ExecStart = "/run/current-system/sw/bin/curl -H tags:fire -H prio:high --silent -d 'Encendiendo la PC' ntfy.sh/laconchadetumadrebobesponjaptm > /dev/null";
+    wantedBy = [ "multi-user.target" ];
+  };
+
 
   # Configure console keymap
   console.keyMap = "la-latin1";
@@ -162,12 +151,84 @@
   };
 
   # Allow unfree packages
-  #nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  #environment.systemPackages = with pkgs; [
-  #];
+  environment.systemPackages = with pkgs; [
+    #vim, docker, poetry #installing python dependences
+    #basics / non-graphical
+
+    #gnome extensions
+    gnomeExtensions.unite
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.pop-shell
+    gnomeExtensions.caffeine
+    gnomeExtensions.clipboard-history
+    gnomeExtensions.dash-to-panel
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.just-perfection
+    gnomeExtensions.openweather
+    gnomeExtensions.freon
+    gnomeExtensions.desktop-cube
+    gnomeExtensions.burn-my-windows
+    gnome.gnome-tweaks
+    gnome-extension-manager
+
+
+
+    #Beauty customization
+    fzf
+    lsd #beauty shell :)
+    bat
+    cava
+    neofetch
+    tty-clock
+    gradience #colors of windows
+
+    #---- Nix Tools ----
+    cached-nix-shell
+    #-------------------
+    #Others
+    wget
+    git
+    rclone
+    xclip
+    neovim
+    gnumake
+    # imagemagick #bitmap images
+    timeshift
+
+    winePackages.staging 
+    dxvk 
+    dotnet-sdk_8 
+    vcg 
+    winetricks 
+    protontricks
+    lutris
+
+    #some dependences
+    appimagekit
+    python3
+
+    # Apps graphical
+    kitty
+    keepassxc
+    apple-cursor
+    obsidian
+    vscode
+    stremio
+    #jupyter
+
+    # Trabajo
+    mailspring
+    libreoffice
+    microsoft-edge
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "mailspring-1.11.0"
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -181,39 +242,6 @@
   #    Seccion Programs
   #--------------------------
 
-  # systemd.services = {
-  #   backupScript = {
-  #     description = "Backup Script";
-  #     wantedBy = [ "timers.target" ];
-  #     serviceConfig = {
-  #       ExecStart = "/etc/nixos/backup-folders.sh";
-  #     };
-  #   };
-  #
-  #   curlOnBoot = {
-  #     description = "Run curl command on boot";
-  #     serviceConfig = {
-  #       Type = "oneshot";
-  #       ExecStart = "/run/current-system/sw/bin/curl --silent -H 'Title: Encendiendo PC' -H 'Priority: High' -H 'Tags: warning' -d 'Se está encendiendo la PC ...' ntfy.sh/laconchadetumadrebobesponjaptm";
-  #     };
-  #   };
-  # };
-  #
-  # systemd.timers = {
-  #   backupScript = {
-  #     description = "Timer for Backup Script";
-  #     wantedBy = ["timers.target"];
-  #   };
-  #
-  #   curlOnBoot = {
-  #     description = "Run curl command on boot timer";
-  #     timerConfig = {
-  #       OnBootSec = "5min";
-  #       Persistent = true;
-  #     };
-  #   };
-  # };
-
   programs = {
     steam = {
       enable = true;
@@ -224,7 +252,7 @@
 
 
   nix = {
-    # gc.automatic = true; # delete garbage collection daily
+    gc.automatic = true; # delete garbage collection daily
     settings = {
       auto-optimise-store = true; # optimiza la store para ahorrar espacio
       experimental-features = ["nix-command" "flakes" ]; # "search" "nixpkgs"]; #doesn't work
@@ -251,5 +279,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05";
+  system.stateVersion = "23.05"; # Did you read the comment?
 }
