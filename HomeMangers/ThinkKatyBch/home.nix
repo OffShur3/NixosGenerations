@@ -31,6 +31,8 @@
     pkgs.git
     pkgs.rclone
     pkgs.neovim
+    pkgs.tmux
+    pkgs.tmuxinator
     pkgs.syncthing
     pkgs.docker-compose
     pkgs.docker
