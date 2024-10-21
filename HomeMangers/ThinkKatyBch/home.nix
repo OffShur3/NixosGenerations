@@ -29,6 +29,7 @@
     pkgs.fd
     pkgs.xclip
     pkgs.git
+    pkgs.gh
     pkgs.rclone
     pkgs.neovim
     pkgs.tmux
