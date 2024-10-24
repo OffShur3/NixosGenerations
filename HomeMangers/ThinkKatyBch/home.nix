@@ -1,5 +1,5 @@
 { config, zen-browser, prismlauncher, pkgs, ... }:
-
+git config pull.rebase false
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -24,6 +24,7 @@
     # # "Hello, world!" when run.
     # pkgs.hello
     ##  some things
+    # herramientas
     pkgs.fzf
     pkgs.evillimiter
     pkgs.fd
@@ -35,6 +36,7 @@
     pkgs.tmux
     pkgs.tmuxinator
     pkgs.syncthing
+    pkgs.xdotool
     pkgs.docker-compose
     pkgs.docker
     pkgs.distrobox
